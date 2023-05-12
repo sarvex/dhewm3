@@ -207,11 +207,7 @@ def ifind( base, path ):
 	level = 0
 	for root, dirs, files in os.walk( base, topdown = True ):
 		if ( level < len( components ) - 1 ):
-			#print 'filter dirs: %s' % repr( dirs )
-			dirs_del = []
-			for i in dirs:
-				if ( not i.lower() == components[ level ].lower() ):
-					dirs_del.append( i )
+			dirs_del = [i for i in dirs if i.lower() != components[ level ].lower()]
 			for i in dirs_del:
 				dirs.remove( i )
 			level += 1
